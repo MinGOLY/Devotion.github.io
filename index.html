@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scene1</title>
+    <link rel="stylesheet" href="scene1_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- 고정 -->
+    <nav>
+        <a href="https://redcandlegames.com/"><img src="img/logo.png" alt="logo"></a>
+        <h1>DEVOTION</h1>
+    </nav>
+
+
+    <div class="container">
+        <div class="box left"></div>
+
+        <div class="wrap">
+            <div class="con-wrap">
+                <h2 id="mainTitle">還願</h2>
+                <p>여전히 소원한다.</p>
+            </div>
+
+            <div class="road">
+                <p>클릭하세요.</p>
+                <div class="animation">
+                    <div class="mouse"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box right">
+            <button><a href="scene2.html">다음으로</a></button>
+        </div>
+    </div>
+
+    <script>
+        const Nav = document.querySelector('nav');
+        const Road = document.querySelector('.road');
+
+        window.addEventListener('DOMContentLoaded', function() {
+            var mainTitle = document.getElementById('mainTitle');
+            var wrap = document.querySelector('.wrap');
+            var conWrap = document.querySelector('.con-wrap');
+            var pElement = conWrap.querySelector('p');
+            var rightButton = document.querySelector('.right button');
+
+            var clickCount = 0;
+
+            function handleClick() {
+                clickCount++;
+                
+                Nav.style.display = 'none';
+                Road.style.display = 'none';
+
+                //클릭 시, 순서대로 opacity가 나타남
+                //순서는 환원> p > right button 
+                if (clickCount === 1) {
+                    mainTitle.style.opacity = '0';
+                    mainTitle.style.transition = 'opacity 1s ease';
+
+                    setTimeout(function() {
+                        mainTitle.textContent = '환원';
+                        mainTitle.style.opacity = '1';
+                    }, 1000);
+
+                    setTimeout(function() {
+                        pElement.style.opacity = '1';
+                    }, 3000);
+
+                    setTimeout(function() {
+                        rightButton.style.display = 'block';
+                    }, 6000);
+                }
+
+                if (clickCount >= 1) {
+                    wrap.removeEventListener('click', handleClick);
+                }
+            }
+
+            wrap.addEventListener('click', handleClick);
+        });
+    </script>
+</body>
+</html>
