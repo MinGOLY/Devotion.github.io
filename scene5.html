@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scene5</title>
+    <link rel="stylesheet" href="scene5_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="https://redcandlegames.com/"><img src="img/logo.png" alt="logo"></a>
+        <a href="scene1.html"><h1>DEVOTION</h1></a>
+    </nav>
+
+    <div class="container">
+        <div class="box left"></div>
+        <div class="wrap">
+            <div class="play">
+                <video src="videos/video5.mp4" autoplay></video>
+            </div>
+            <div class="help">
+                    <button><p>한</p></button>
+            </div>
+            <div class="story">
+                <div class="scroll">
+                    <p>나는 튤립을 많이 접었다.</p>
+                    <p>조금만 더 접으면, 방을 가득 채울 수 있을 거다.</p>
+                    <p>아빠는 기도를 드리고 경전을 읽는다고 바빠서 튤립을 접을 시간이 없다.</p>
+                    <p>동화 속처럼 튤립을 많이 접으면 내 병도 분명히 다 나을 거다</p>
+                    <p>병이 다 나으면 연습을 계속해서 노래를 더 잘 부를 거다</p>
+                    <p>그래서 생일날 빌었던 소원처럼 꼭 대스타가 될 거다</p>
+                    <p>그럼 아빠랑 엄마가 텔레비전에서 내가 노래하는 걸 보실 수 있을 거다</p>
+                    <p>가족 모두가 거실에 모여 있으면 즐겁다</p>
+                </div>
+
+            </div>
+
+            <div class="con-wrap">
+                <h2>End</h2>
+            </div>
+        </div>
+        <div class="box right">
+        </div>
+    </div>
+
+    <script>
+        const conWrap = document.querySelector('.con-wrap');
+        const boxes = document.querySelectorAll('.box');
+        const video = document.querySelector('.play video');
+        const playButton = document.querySelector('.play');
+
+        //버튼 클릭시 비디오 재생, 멈춤
+        playButton.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+                boxes.forEach(function(box) {
+                });
+            } else {
+                video.pause();
+                boxes.forEach(function(box) {
+                });
+            }
+        });
+
+            //비디오 끝나면 사라진 창들 전부 나옴 opacity:1;
+            video.addEventListener('ended', function() {
+            conWrap.style.display = 'block';
+        });
+
+        //버튼 클릭 시, 자막 생성
+        const helpButton = document.querySelector('.help button');
+        const story = document.querySelector('.story');
+
+        helpButton.addEventListener('click', function() {
+        const currentDisplay = getComputedStyle(story).getPropertyValue('display');
+
+            if (currentDisplay === 'none') {
+                story.style.display = 'flex';
+                helpButton.style.backgroundColor = '#E40E41';
+            } else {
+                story.style.display = 'none';
+                helpButton.style.backgroundColor = '#444';
+            }
+        });
+    </script>
+</body>
+</html>

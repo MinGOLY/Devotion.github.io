@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scene3</title>
+    <link rel="stylesheet" href="scene3_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="https://redcandlegames.com/"><img src="img/logo.png" alt="logo"></a>
+        <a href="scene1.html"><h1>DEVOTION</h1></a>
+    </nav>
+
+    <div class="container">
+        <div class="box left"></div>
+        <div class="wrap">
+            <div class="play">
+                <video src="videos/video3.mp4" autoplay></video>
+            </div>
+            <div class="con-wrap">
+                <h2>...</h2>
+                <p></p>
+            </div>
+        </div>
+        <div class="box right">
+            <button><a href="scene4.html">다음으로</a></button>
+        </div>
+    </div>
+
+    <script>
+        const conWrap = document.querySelector('.con-wrap');
+        const boxes = document.querySelectorAll('.box');
+        const video = document.querySelector('.play video');
+        const playButton = document.querySelector('.play');
+
+        //버튼 클릭시 비디오 재생, 멈춤
+        playButton.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+                boxes.forEach(function(box) {
+                    box.style.display = 'none';
+                });
+            } else {
+                video.pause();
+                boxes.forEach(function(box) {
+                    box.style.display = 'block';
+                });
+            }
+        });
+
+            //비디오 끝나면 사라진 창들 전부 나옴 opacity:1;
+            video.addEventListener('ended', function() {
+            conWrap.style.display = 'block';
+            boxes.forEach(function(box) {
+                    box.style.display = 'block';
+                });
+        });
+    </script>
+</body>
+</html>

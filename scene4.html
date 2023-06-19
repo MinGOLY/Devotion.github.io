@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scene4</title>
+    <link rel="stylesheet" href="scene4_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="https://redcandlegames.com/"><img src="img/logo.png" alt="logo"></a>
+        <a href="scene1.html"><h1>DEVOTION</h1></a>
+    </nav>
+
+    <div class="container">
+        <div class="box left"></div>
+        <div class="wrap">
+            <div class="play">
+                <video src="videos/video4.mp4"></video>
+            </div>
+            <div class="con-wrap">
+                <h2>관락음 (觀落陰)</h2>
+                <p>부적과 붉은 천으로 눈을 가리면 영적 세계로 들어갈 수 있다.<br>
+                    두 펑 위는 두 메이 신을 위해 관락음을 시행한다.</p>
+            </div>
+        </div>
+        <div class="box right">
+            <button><a href="scene5.html">다음으로</a></button>
+        </div>
+    </div>
+
+    <script>
+        const conWrap = document.querySelector('.con-wrap');
+        const video = document.querySelector('.play video');
+        const playButton = document.querySelector('.play');
+        const rightButton = document.querySelector('.right button');
+        const helpButton = document.querySelector('.help button');
+        const helpBtns = document.querySelectorAll('.help button');
+        const lyric = document.querySelector('.lyric');
+        const lyricP = document.querySelector('.lyric p');
+        const lyricTitle = document.querySelector('.lyric h3');
+        const lyricButton = document.querySelector('.lyric button');
+        const Korean = document.querySelector('.korean button');
+        const Taiwan = document.querySelector('.taiwan button');
+
+        let lang = [
+            {title: '부둣가의 아가씨',
+                typo: "바다에 파도가 가득 일렁이는데 들어오는 배는 보이질 않고<br>그 여자는 부둣가에 서서 물끄러미 북쪽만을 바라보네<br>검었던 머리에 하얗게 눈이 내렸건만 아직도 마음 속은<br>편지 속 물음에 그가 무어라 답했을까 애가 타는구나<br><br>미련한 아가씨는 머리에 한 송이 꽃을 꽂고 그가 돌아오길 기다린다네<br>자그마한 입에 하고픈 말을 담아둘 수 없어 모든 마음 담아 사랑을 노래한다네<br>세월은 소리 없이 지나버렸어도 그녀에게는 슬픔의 그림자 없으니<br>다정한 이여 그녀에게 묻지 마오 계속 그를 기다릴 것이냐고"},
+            {title: '碼頭姑娘',
+                typo: "大海滿是波浪 不見船入港<br>她站在碼頭 遙望著北方<br>青絲飛上白霜 心還墊著他<br>信裡沒說的 那句回答<br><br>傻傻的姑娘戴一朵花 等著他回來呀<br>小小的嘴兒藏不住話 都唱成情歌呀<br>青山依舊 歲月如常 也不見她悲傷<br>有情的人 別問她 你還願意嗎"}
+
+        ]
+
+        //con-wrap 누르면 con-wrap 사라짐
+        conWrap.addEventListener('click', function() {
+            this.remove();
+        });
+        //con-wrap 누르면 스토리 진행
+        conWrap.addEventListener('click', function() {
+            video.play();
+        });
+
+        //버튼 클릭시 비디오 재생, 멈춤
+        playButton.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+                rightButton.style.display = 'none';
+            } else {
+                video.pause();
+                rightButton.style.display = 'block';
+            }
+        });
+
+        //help 버튼들에 대한 작용
+        helpBtns.forEach(button => {
+            button.addEventListener('click', function() {
+                helpBtns.forEach(btn => {
+                    btn.style.backgroundColor = '#444';
+                });
+                this.style.backgroundColor = '#E40E41';
+                lyric.style.transition = 'left 0.5s ease';
+                lyric.style.left = '0';
+            });
+        });
+
+        //가사 X버튼에 대한 작용
+        lyricButton.addEventListener('click', function() {
+            lyric.style.transition = 'left 0.5s ease';
+            lyric.style.left = '-50%';
+            helpBtns.forEach(btn => {
+                btn.style.backgroundColor = '#444';
+            });
+        });
+
+        //한, 臺 클릭에 따라 가사 변경
+        Korean.addEventListener('click', function() {
+            lyricTitle.innerHTML = lang[0].title;
+            lyricP.innerHTML = lang[0].typo;
+        });
+        Taiwan.addEventListener('click', function() {
+            lyricTitle.innerHTML = lang[1].title;
+            lyricP.innerHTML = lang[1].typo;
+        });
+
+
+            //비디오 끝나면 오른쪽 버튼 나옴
+            video.addEventListener('ended', function() {
+            rightButton.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
